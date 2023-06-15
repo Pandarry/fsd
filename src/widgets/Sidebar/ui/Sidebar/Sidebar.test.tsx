@@ -1,14 +1,19 @@
-import { render, screen } from '@testing-library/react'
+import React from 'react'
+import { fireEvent, screen } from '@testing-library/react'
 import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar'
+import { componentRender } from 'shared/lib/tests/componentRender/componentRender'
 
-describe('Button', () => {
+describe('Sidebar', () => {
     test('test render', () => {
-        render(<Sidebar />)
-        expect(screen.getByText('TEST')).toBeInTheDocument()
+        componentRender(<Sidebar />)
+        expect(screen.getByTestId('sidebar')).toBeInTheDocument()
     })
-    test('test themes', () => {
-        render(<Button theme={ThemeButton.CLEAR}>TEST</Button>)
-        expect(screen.getByText('TEST')).toHaveClass('clear')
-        screen.debug()
+
+    test('test render', () => {
+        componentRender(<Sidebar />)
+        const toggleBtn = screen.getByTestId('sidebar-toggle')
+        expect(screen.getByTestId('sidebar')).toBeInTheDocument()
+        fireEvent.click(toggleBtn)
+        expect(screen.getByTestId('sidebar')).toHaveClass('collapsed')
     })
 })
