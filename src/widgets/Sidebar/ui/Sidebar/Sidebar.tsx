@@ -8,7 +8,7 @@ interface SidebarProps {
     className?: string
 }
 
-const Sidebar = ({ className }: SidebarProps) => {
+export const Sidebar = ({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false)
 
     const onToggle = () => {
@@ -24,5 +24,3 @@ const Sidebar = ({ className }: SidebarProps) => {
         </div>
     )
 }
-
-export default Sidebar
